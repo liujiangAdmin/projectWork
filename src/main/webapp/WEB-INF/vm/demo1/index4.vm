@@ -1,0 +1,27 @@
+#set( $layout = "/layout1.vm")
+
+
+
+
+
+<script type="text/javascript">
+    // TODO 入参raw包含json格式，而不是key value键值对
+    //"{'userName': '"+loginapp.userName+"','userPassword': '"+loginapp.userPassword+"'}"
+    $(function(){
+        $.ajax({
+            type: "POST",
+            url: "/demo1/index7",
+            dataType: 'json',
+            contentType:'application/json;charset=UTF-8',
+            data: JSON.stringify({"name": "刘江index7","age": 23}),
+            success: function(msg){
+                //var data = eval("("+msg+")");
+                //alert(data.name+"and"+data.age);
+                alert(msg);
+            }
+        });
+
+
+    });
+
+</script>

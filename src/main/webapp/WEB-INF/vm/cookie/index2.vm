@@ -1,0 +1,2 @@
+#set( $layout = "/layout1.vm")
+<h2>$!id</h2>

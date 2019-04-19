@@ -1,0 +1,44 @@
+#set( $layout = "/layout1.vm")
+
+<div id="editor">
+    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+</div>
+<button id="btn1">获取html</button>
+<button id="btn1" onclick="show()">发送图文</button>
+<!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+<script type="text/javascript" src="/js/wangEditor/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
+    editor.create()
+</script>
+<script type="text/javascript">
+    var a;
+    document.getElementById('btn1').addEventListener('click', function () {
+        // 读取 html
+        a=editor.txt.html()
+
+    }, false)
+    $(function () {
+        $("#btn1").click(
+            function () {
+                alert(a)
+            }
+        );
+
+    })
+    function show()
+    {
+        var x = [{"sendState":5,"messageType":1,"title":"lalala","depict":null,"coverImage":"http://test.zjsrmplat.ucmed.cn/upload/2018-06-19/952121529387644108.jpg","content":a,"enclosureAddress":null,"originalAddress":null}];
+        $.ajax({
+            type: "POST",
+            url: "http://test.lj.ucmed.cn/imageTextMessage.do?action=sendImageText&token=302766f255acb82d8ad61cebf56b52792cd",
+            data: {"message":JSON.stringify(x)},
+            dataType: "json",
+            success: function(data){
+                alert("aaa:"+data);
+            }
+        });
+    }
+</script>

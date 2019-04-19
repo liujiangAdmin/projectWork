@@ -1,0 +1,20 @@
+<img src="/images/car.png"/>
+<img src="/images/car.png"/>
+<img src="/images/car.png"/>
+<button name="login" onclick="login();">登录</button>
+
+<script>
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: "/login/index2",
+            data: {"name": "刘江","password": "123456"},
+            success: function(msg){
+                var data = eval("("+msg+")");
+                //alert(data)
+                alert(data.name+"and"+data.password);
+                window.location.href="/";
+            }
+        });
+    }
+</script>

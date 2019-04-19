@@ -1,0 +1,123 @@
+#set( $layout = "/layout.vm")
+
+
+<div>
+    <center><h3>欢迎来到微信jsapi测试界面-V型知识库</h3></center>
+
+    <h3 id="menu-webview">界面操作接口</h3><br>
+    <span class="desc"  >隐藏右上角菜单接口</span><br>
+    <button class="btn btn_primary" id="hideOptionMenu">hideOptionMenu</button><br>
+    <span class="desc">显示右上角菜单接口</span><br>
+    <button class="btn btn_primary" id="showOptionMenu">showOptionMenu</button><br>
+    <span class="desc">关闭当前网页窗口接口</span><br>
+    <button class="btn btn_primary" id="closeWindow">closeWindow</button><br>
+    <span class="desc">批量隐藏功能按钮接口</span><br>
+    <button class="btn btn_primary" id="hideMenuItems">hideMenuItems</button><br>
+    <span class="desc">批量显示功能按钮接口</span><br>
+    <button class="btn btn_primary" id="showMenuItems">showMenuItems</button><br>
+    <span class="desc">隐藏所有非基础按钮接口</span><br>
+    <button class="btn btn_primary" id="hideAllNonBaseMenuItem">hideAllNonBaseMenuItem</button><br>
+    <span class="desc">显示所有功能按钮接口</span><br>
+    <button class="btn btn_primary" id="showAllNonBaseMenuItem">showAllNonBaseMenuItem</button><br>
+</div>
+<input type="hidden" id="appid" value=$!appid /><br>
+<input type="hidden" id="timestamp" value=$!timestamp /><br>
+<input type="hidden" id="noncestr" value=$!noncestr /><br>
+<input type="hidden" id="signature" value=$!signature />
+
+<script>
+    alert(location.href.split('#')[0]);
+    wx.config({
+        beta: true,
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: $('#appid').val(), // 必填，公众号的唯一标识
+        timestamp: $('#timestamp').val(), // 必填，生成签名的时间戳
+        nonceStr: $('#noncestr').val(), // 必填，生成签名的随机串
+        signature: $('#signature').val(),// 必填，签名，见附录1
+        jsApiList: ['checkJsApi',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'getNetworkType',//网络状态接口
+            'openLocation',//使用微信内置地图查看地理位置接口
+            'getLocation', //获取地理位置接口
+            'hideOptionMenu',//界面操作接口1
+            'showOptionMenu',//界面操作接口2
+            'closeWindow' ,  ////界面操作接口3
+            'hideMenuItems',////界面操作接口4
+            'showMenuItems',////界面操作接口5
+            'hideAllNonBaseMenuItem',////界面操作接口6
+            'showAllNonBaseMenuItem'////界面操作接口7
+        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+
+    // 8 界面操作接口 开始----------
+    // 8.1 隐藏右上角菜单
+    document.querySelector('#hideOptionMenu').onclick = function () {
+        wx.hideOptionMenu();
+    };
+
+    // 8.2 显示右上角菜单
+    document.querySelector('#showOptionMenu').onclick = function () {
+        wx.showOptionMenu();
+    };
+
+    // 8.3 批量隐藏菜单项
+    document.querySelector('#hideMenuItems').onclick = function () {
+        wx.hideMenuItems({
+            menuList: [
+                'menuItem:readMode', // 阅读模式
+                'menuItem:share:timeline', // 分享到朋友圈
+                'menuItem:copyUrl' // 复制链接
+            ],
+            success: function (res) {
+                alert('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    };
+
+    // 8.4 批量显示菜单项
+    document.querySelector('#showMenuItems').onclick = function () {
+        wx.showMenuItems({
+            menuList: [
+                'menuItem:readMode', // 阅读模式
+                'menuItem:share:timeline', // 分享到朋友圈
+                'menuItem:copyUrl' // 复制链接
+            ],
+            success: function (res) {
+                alert('已显示“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    };
+
+    // 8.5 隐藏所有非基本菜单项
+    document.querySelector('#hideAllNonBaseMenuItem').onclick = function () {
+        wx.hideAllNonBaseMenuItem({
+            success: function () {
+                alert('已隐藏所有非基本菜单项');
+            }
+        });
+    };
+
+    // 8.6 显示所有被隐藏的非基本菜单项
+    document.querySelector('#showAllNonBaseMenuItem').onclick = function () {
+        wx.showAllNonBaseMenuItem({
+            success: function () {
+                alert('已显示所有非基本菜单项');
+            }
+        });
+    };
+
+    // 8.7 关闭当前窗口
+    document.querySelector('#closeWindow').onclick = function () {
+        wx.closeWindow();
+    };
+    // 8 界面操作接口  结束------------------------------------------
+</script>

@@ -1,0 +1,26 @@
+#set( $layout = "/layout1.vm")
+<h2><a href="/cookie/index2">记录cookie</a></h2>
+
+
+
+
+<script type="text/javascript">
+    // TODO 入参raw包含json格式，而不是key value键值对
+    //"{'userName': '"+loginapp.userName+"','userPassword': '"+loginapp.userPassword+"'}"
+
+    $(function(){
+           /* $.ajax({
+                type: "POST",
+                url: "/cookie/index3",
+                dataType: 'json',
+                contentType:'application/json;charset=UTF-8',
+                data: JSON.stringify({"userName": "A","userPassword": "B"}),
+                success: function(data){
+                   alert(data);
+                }
+            });*/
+
+
+    });
+
+</script>

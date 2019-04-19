@@ -1,0 +1,3 @@
+#set( $layout = "/layout1.vm")
+<img src="/images/car.png" />
+<h2>$!name</h2>

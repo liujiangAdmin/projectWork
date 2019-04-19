@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo测试</title>
+    <script src = "/js/jquery.min.js"></script>
+</head>
+<body>
+
+<div>
+    $screen_content
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ucmed.hnust.dao.DeptMapper" >
+    <resultMap id="DeptResultMap" type="com.ucmed.hnust.pojo.Dept" >
+        <id column="dept_id" property="deptId" jdbcType="INTEGER" />
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+        <result column="parent_dept_id" property="parentDeptId" jdbcType="INTEGER" />
+        <result column="sort_by" property="sortBy" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Dept_Column_List" >
+       dept_id, dept_name, parent_dept_id, sort_by
+    </sql>
+
+    <select id="selectDept" resultMap="DeptResultMap" parameterType="com.ucmed.hnust.pojo.Dept">
+        SELECT
+        <include refid="Dept_Column_List"/>
+        FROM dept
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+    <title>企业微111信</title>
+    <script src = "/js/jquery.min.js"></script>
+    <script src = "http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+<body>
+
+<div>
+    $screen_content
+</div>
+
+</body>
+</html>

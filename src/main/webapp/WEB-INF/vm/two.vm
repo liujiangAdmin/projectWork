@@ -1,0 +1,10 @@
+<h1>此处为假如企业微信二次验证</h1>
+<form action="/two/two1"  method="post">
+    <table>
+        1.what's you father name？
+         <input value="刘江"/>
+        <tr>
+            <td><input type="submit" value="提交"></td>
+        </tr>
+    </table>
+</form>

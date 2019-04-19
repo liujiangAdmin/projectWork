@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ucmed.hnust.dao.RedisTestMapper">
+    <resultMap id="BaseResultMap" type="com.ucmed.hnust.pojo.RedisTest">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,user_name,sex,age
+    </sql>
+    <!-- 查询所有的user -->
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from redis_test
+    </select>
+
+    <!-- 添加一个用户 -->
+    <insert id="insertUser" parameterType="com.ucmed.hnust.pojo.RedisTest">
+        INSERT INTO
+        redis_test(user_name,sex,age) VALUES
+        (#{userName},#{sex},#{age})
+    </insert>
+
+    <!-- 删除用户
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM tb_user WHERE
+        id=#{id}
+    </delete>-->
+
+    <!-- 更新user信息
+    <update id="editUser" parameterType="com.ssm.pojo.User">
+        UPDATE tb_user SET
+        userName=#{userName}, sex=#{sex},age=#{age} WHERE id=#{id}
+    </update>-->
+</mapper>

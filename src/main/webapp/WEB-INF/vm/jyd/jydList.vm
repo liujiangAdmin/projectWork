@@ -1,0 +1,43 @@
+#set( $layout = "/layout.vm")
+<style>
+    .tipp{
+        font-size: 38px;
+        border-bottom: 1px solid black;
+        line-height: 28px;
+        padding-left: 30px;
+    }
+    .bo{
+        font-size: 40px;
+    }
+    .co{
+        font-size: 30px;
+        padding: 0 15px;
+    }
+</style>
+
+
+<div>
+#if($!errcode==0)
+    <div class="tipp">
+        <p style="font-size: 40px;font-weight: 700;">$!HZname</p>
+        <p>$!idCard</p>
+    </div>
+    <table style="width: 94%;margin-left: 3%;">
+        <tr style="line-height: 100px;">
+            <td class="bo" style="width:35%;">项目名称</td>
+            <td class="bo" style="width:20%;">报告时间</td>
+            <td class="bo" style="width:15%;text-align: right;">查看</td>
+        </tr>
+        #foreach($d in $list)
+            <tr style="height: 130px;">
+                <td class="co" style="width:35%;">$!d.reportName</td>
+                <td class="co" style="width:20%;">$!d.SHENHERQ</td>
+                <td class="co" style="width:15%;text-align: right;"><a href="#" onclick="reportXq('$!HZname','$!idCard','$!d.JIANYANID','$!d.SHENHEYS','$!d.JIANYANRQ','$!d.SHENHERQ');">查看</a></td>
+            </tr>
+        #end
+
+    </table>
+    #else
+        <h1>暂无报告单</h1>
+#end
+</div>

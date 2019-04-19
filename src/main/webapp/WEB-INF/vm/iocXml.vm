@@ -1,0 +1,15 @@
+#set( $layout = "/layout3.vm")
+<!DOCTYPE html>
+<head>
+    <title>iocxml</title>
+    <script src = "/js/jquery.min.js"></script>
+    <script src = "http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+<body>
+
+<div>
+    <div>aaaaaaaa</div>
+</div>
+
+</body>
+</html>
