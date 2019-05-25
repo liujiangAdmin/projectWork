@@ -1,6 +1,6 @@
 package com.ucmed.hnust.util;
 
-import org.apache.log4j.Logger;
+
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -14,7 +14,7 @@ import java.util.UUID;
  */
 public class Tool {
 
-    private static final Logger logger = Logger.getLogger(Tool.class);
+
     /**
      * byte to String
      *
@@ -62,9 +62,9 @@ public class Tool {
             messageDigest.update(str.getBytes("UTF-8"));
             signature = Tool.byteToHex(messageDigest.digest());
         } catch (NoSuchAlgorithmException e) {
-            logger.error(e);
+
         } catch (UnsupportedEncodingException e) {
-            logger.error(e);
+
         }
         return signature;
     }

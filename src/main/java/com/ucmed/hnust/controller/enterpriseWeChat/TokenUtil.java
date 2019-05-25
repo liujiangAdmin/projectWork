@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.ucmed.hnust.util.HttpRequestGet;
 import com.ucmed.hnust.util.RedisCacheUtil;
 import com.ucmed.hnust.util.Tool;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.UnsupportedEncodingException;
@@ -19,7 +18,7 @@ import java.util.UUID;
  * Created by ZY-LJ-1446 on 2018/4/18.
  */
 public class TokenUtil {
-    private static final Logger logger = Logger.getLogger(TokenUtil.class);
+
 
     @Autowired
     private RedisCacheUtil redisCacheUtil;
@@ -33,7 +32,7 @@ public class TokenUtil {
             JSONObject res = HttpRequestGet.sendGet(
                     PublicVariable.tokenuri,
                     param, "utf-8");
-            logger.info("通讯录token:" + res);
+
             redisCacheUtil.setCacheObjectForqywx("txltoken", res.getString("access_token"));
         }
         return redisCacheUtil.getCacheObjectForqywx("txltoken").toString();
@@ -49,7 +48,7 @@ public class TokenUtil {
             JSONObject res = HttpRequestGet.sendGet(
                     PublicVariable.tokenuri,
                     param, "utf-8");
-            logger.info("第三方应用token"+zjyysecret + ":" + res);
+
             redisCacheUtil.setCacheObjectForqywx(zjyysecret, res.getString("access_token"));
         }
         return redisCacheUtil.getCacheObjectForqywx(zjyysecret).toString();
@@ -61,7 +60,7 @@ public class TokenUtil {
             Map<String, Object> map = new HashMap<>();
             map.put("access_token",getzjyyTokenImpl(zjyysecret));
             JSONObject res = HttpRequestGet.sendGet(PublicVariable.jsapiticket,map,"utf-8");
-            logger.info("第三方应用jsapi_ticket"+zjyysecret+"ticket:"+res);
+
             redisCacheUtil.setCacheObjectForqywx(zjyysecret+"ticket", res.getString("ticket"));
         }
         return redisCacheUtil.getCacheObjectForqywx(zjyysecret+"ticket").toString();

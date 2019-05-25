@@ -2,7 +2,6 @@ package com.ucmed.hnust.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ucmed.hnust.controller.enterpriseWeChat.PublicVariable;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +24,6 @@ import java.util.Map;
 @RequestMapping(value = "/wangEditor")
 public class WangEditor {
 
-    private static final Logger logger = Logger.getLogger(WangEditor.class);
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index1(HttpServletRequest request, ModelMap map, HttpServletResponse response){

@@ -1,7 +1,6 @@
 package com.ucmed.hnust.util;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.util.Map;
  */
 public class HttpPostKeyValue {
 
-    private static Logger LOG = Logger.getLogger(HttpPostKeyValue.class);
 
     public static JSONObject sendPost(String url, Map<String, Object> map,
                                       String charset) {
@@ -49,7 +47,6 @@ public class HttpPostKeyValue {
         HttpURLConnection conn = null;
         StringBuffer sb = new StringBuffer();
         try {
-            LOG.info(url);
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
             conn = (HttpURLConnection)realUrl.openConnection();

@@ -5,15 +5,16 @@ package com.ucmed.hnust.thred;
  */
 public class MyThread39_0 extends Thread
 {
-    private ThreadDomain39 td;
+    private LoginInfo loginInfo;
 
-    public MyThread39_0(ThreadDomain39 td)
-    {
-        this.td = td;
+    public MyThread39_0(LoginInfo loginInfo) {
+        this.loginInfo = loginInfo;
     }
 
     public void run()
     {
-        td.methodA();
+        //loginInfo.show();
+        loginInfo.show1("liujiang","123456");
+        //loginInfo.addNum("a");
     }
 }

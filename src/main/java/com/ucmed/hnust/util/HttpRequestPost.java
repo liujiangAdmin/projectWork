@@ -1,6 +1,6 @@
 package com.ucmed.hnust.util;
 
-import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -10,7 +10,7 @@ import java.net.URL;
  * Created by ZY-LJ-1446 on 2018/4/18.
  */
 public class HttpRequestPost {
-    private static final Logger logger = Logger.getLogger(HttpRequestPost.class);
+
 
     public static String HttpRequest(String requestUrl, String requestMethod,
                                          String outputStr) {
@@ -68,7 +68,7 @@ public class HttpRequestPost {
                 }
             } catch (Exception e) {
                 //日志处理等，请自行实现
-                logger.info(e.toString());
+
             }
         }
         return buffer.toString();

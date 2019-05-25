@@ -3,7 +3,6 @@ package com.ucmed.hnust.demo;
 import com.alibaba.fastjson.JSONObject;
 import com.ucmed.hnust.controller.CookieController;
 import org.apache.commons.io.output.WriterOutputStream;
-import org.apache.log4j.Logger;
 
 import java.io.*;
 
@@ -12,7 +11,6 @@ import java.io.*;
  */
 public class FileDemo {
 
-    private static final Logger logger = Logger.getLogger(FileDemo.class);
 
     /**
      * 创建文件
@@ -29,7 +27,7 @@ public class FileDemo {
             }
             isTrue = file.createNewFile();
         } catch (Exception e) {
-            logger.error("创建文件出错", e);
+
         }
         return isTrue;
     }
@@ -46,7 +44,6 @@ public class FileDemo {
                 isTrue = file.delete();
             }
         } catch (Exception e) {
-            logger.error("删除文件出错", e);
         }
         return isTrue;
     }
@@ -66,8 +63,6 @@ public class FileDemo {
 //        out.write(bytes);
 //        out.close();
         File file = new File("D:/FileDemo/liujiang.txt");
-        logger.info(file.getPath());
-        logger.info(file.getName());
         ObjectOutputStream objectOutputStream=null;
     }
 }

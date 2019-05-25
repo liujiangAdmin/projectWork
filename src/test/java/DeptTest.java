@@ -7,7 +7,7 @@ import com.ucmed.hnust.service.DeptService;
 import com.ucmed.hnust.util.HttpRequestGet;
 import com.ucmed.hnust.util.HttpRequestPost;
 import com.ucmed.hnust.util.QywxUploadPost;
-import org.apache.log4j.Logger;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class DeptTest {
-    private static final Logger logger = Logger.getLogger(DeptTest.class);
+
     @Autowired
     private DeptService deptService;
     @Autowired
@@ -39,7 +39,7 @@ public class DeptTest {
     @Test
     public void selectDept() throws IOException {
         List<Dept> list = deptService.selectDept();
-        logger.info(JSONObject.toJSONString(list));
+
 
         //生成csv文件
        /* File file = new File(this.getClass().getResource("/other/dept.csv").getPath());

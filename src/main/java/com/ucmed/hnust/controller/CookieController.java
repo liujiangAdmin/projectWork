@@ -2,7 +2,6 @@ package com.ucmed.hnust.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ucmed.hnust.pojo.Admin;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +21,7 @@ import java.util.*;
 @RequestMapping(value = "/cookie")
 public class CookieController {
 
-    private static final Logger logger = Logger.getLogger(CookieController.class);
+
 
     @RequestMapping(value = "/index1",method = RequestMethod.GET)
     public String index1(HttpServletRequest request, ModelMap map, HttpServletResponse response){
@@ -65,11 +64,7 @@ public class CookieController {
     @ResponseBody
     @RequestMapping(value = "/index3",method = RequestMethod.POST)
     public String index3(@RequestBody JSONObject a, HttpServletRequest request, ModelMap map, HttpServletResponse response){
-        logger.info("aaaaaaaaaaaaaaaaa");
-        logger.info("aaaaaaaaaaaaaaaaa");
-        logger.info(a);
-        logger.info("aaaaaaaaaaaaaaaaa");
-        logger.info("aaaaaaaaaaaaaaaaa");
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("k","v");
         return jsonObject.toString();

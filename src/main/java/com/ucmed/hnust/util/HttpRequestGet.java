@@ -1,7 +1,6 @@
 package com.ucmed.hnust.util;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -14,7 +13,6 @@ import java.util.Map;
  * Created by ZY-LJ-1446 on 2018/4/18.
  */
 public class HttpRequestGet {
-    private static final Logger logger = Logger.getLogger(HttpRequestGet.class);
     public static JSONObject sendGet(String url, Map<String, Object> map,
                                       String charset) {
         String param = getParam(map);
@@ -45,7 +43,6 @@ public class HttpRequestGet {
         HttpURLConnection conn = null;
         try {
             String urlNameString = url + "?" + param;
-            logger.info(urlNameString);
             URL realUrl = new URL(urlNameString);
             // 打开和URL之间的连接
             conn = (HttpURLConnection) realUrl.openConnection();

@@ -9,7 +9,6 @@ import com.ucmed.hnust.service.DeptService;
 import com.ucmed.hnust.util.HttpRequestGet;
 import com.ucmed.hnust.util.HttpRequestPost;
 import com.ucmed.hnust.util.QywxUploadPost;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,6 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/asynchronousBatch")
 public class AsynchronousBatch {
-    private static final Logger logger = Logger.getLogger(AsynchronousBatch.class);
     @Autowired
     private DeptService deptService;
     @Autowired
@@ -41,7 +39,6 @@ public class AsynchronousBatch {
     @RequestMapping(value = "/fullCoverageDepartment", method = RequestMethod.GET)
     public String fullCoverageDepartment() throws IOException {
         List<Dept> list = deptService.selectDept();
-        logger.info(JSONObject.toJSONString(list));
 
         //生成csv文件
         File file = new File(PublicVariable.fileuploaduri+"dept.csv");
@@ -51,7 +48,7 @@ public class AsynchronousBatch {
             {
                 file.createNewFile();
             }else{
-                logger.info("");
+
                 return "error";
             }
         }else{
@@ -71,20 +68,20 @@ public class AsynchronousBatch {
         }
         csvWriter.close();
         long end=System.currentTimeMillis();
-        logger.info("时间戳:"+(end-start));
+
 
         //进行素材上传
         String url= PublicVariable.uploadrui+ tokenUtil.gettxlTokenImpl()+"&type=file";
         String filePath = file.getPath();
         String result= QywxUploadPost.send(url,filePath);
-        logger.info("素材上传:"+result);
+
         //全量覆盖部门
         JSONObject jsonObject = JSONObject.parseObject(result);
         String mediaId=jsonObject.getString("media_id");
         JSONObject deptInput = new JSONObject();
         deptInput.put("media_id",mediaId);
         String res= HttpRequestPost.HttpRequest(PublicVariable.deptall+tokenUtil.gettxlTokenImpl(),"POST",deptInput.toString());
-        logger.info(res);
+
         //获取异步任务结果
         JSONObject jsonObject1 = JSONObject.parseObject(res);
         String jobId=jsonObject1.getString("jobid");
@@ -92,9 +89,6 @@ public class AsynchronousBatch {
         map.put("access_token",tokenUtil.gettxlTokenImpl());
         map.put("jobid",jobId);
         JSONObject res1 =  HttpRequestGet.sendGet(PublicVariable.hqybrwjg,map,"utf-8");
-        logger.info(res1);
-        logger.info(res1);
-        logger.info(res1);
         return res1.toString();
     }
 }

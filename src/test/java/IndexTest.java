@@ -1,5 +1,5 @@
 import com.ucmed.hnust.xml.dom.DomUtil;
-import org.apache.log4j.Logger;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,6 @@ import java.util.Properties;
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class IndexTest {
 
-    private Logger logger = Logger.getLogger(this.getClass());
 
     String mrmyList;
     @Before
@@ -27,11 +26,11 @@ public class IndexTest {
     {
         Properties properties = new Properties();
         try {
-            logger.info(this.getClass().getResourceAsStream("/other/mrmy.properties"));
+
             properties.load(this.getClass().getResourceAsStream("other/mrmy.properties"));
             mrmyList = properties.getProperty("mymy.list");
             mrmyList=new String(mrmyList.getBytes("ISO-8859-1"),"utf-8");
-            logger.info(mrmyList);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,7 +39,7 @@ public class IndexTest {
     @Test
     public void test()
     {
-        logger.info(this.getClass().getResource("/other/dom.xml").getPath());
+
         File file = new File(this.getClass().getResource("/other/dom.xml").getPath());
         if (!file.exists()){
             try {

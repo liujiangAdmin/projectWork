@@ -6,7 +6,6 @@ import com.ucmed.hnust.controller.enterpriseWeChat.PublicVariable;
 import com.ucmed.hnust.controller.enterpriseWeChat.TokenUtil;
 import com.ucmed.hnust.util.*;
 import org.apache.ibatis.reflection.ExceptionUtil;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +27,6 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/reportApplication")
 public class ReportApplication {
-    private static final Logger logger = Logger.getLogger(ReportApplication.class);
 
     @Autowired
     private TokenUtil tokenUtil;
@@ -45,12 +43,12 @@ public class ReportApplication {
             map1.put("access_token", tokenUtil.getzjyyTokenImpl(PublicVariable.jydsecret));
             map1.put("code", code);
             JSONObject jsonObject = HttpRequestGet.sendGet(PublicVariable.hqcyxxbycode, map1, "utf-8");
-            logger.info("根据code获取成员信息：" + jsonObject);
+
             JSONObject jsonObject1 = new JSONObject();
             jsonObject1.put("user_ticket", jsonObject.getString("user_ticket"));
             String res = HttpRequestPost.HttpRequest(PublicVariable.hqcyxqbyticket + tokenUtil.getzjyyTokenImpl(PublicVariable.jydsecret)
                     , "POST", jsonObject1.toString());
-            logger.info("hqcyxqResult:" + jsonObject);
+
             JSONObject jsonObject2 = JSONObject.parseObject(res);
             map.put("errcode", "0");
             map.put("userid", jsonObject2.getString("userid"));
@@ -75,7 +73,7 @@ public class ReportApplication {
             url.append(request.getQueryString());
         }
         String jsUrl = url.toString();
-        logger.info("jsUrl:"+jsUrl);
+
         String ticket = tokenUtil.getTicket(PublicVariable.jydsecret);
         String noncestr =  Tool.getNoncestr();
         String timestamp = Tool.getTimestamp();
@@ -102,7 +100,7 @@ public class ReportApplication {
         invoker_content.put("CAOZUORQ", KunshanSecondDateUtil.getCurrentDateTime());
         invoker_content.put("XITONGBS", "APP");
         invoker_content.put("KAISHIRQ", KunshanSecondDateUtil.getDateByDays2(-Integer.parseInt(dayNum)));
-        logger.info("dayNum:" + KunshanSecondDateUtil.getDateByDays2(-Integer.parseInt(dayNum)));
+
         //结束时间选择当前时间
         invoker_content.put("JIESHURQ", KunshanSecondDateUtil.getDateByDays2(0));
         invoker_content.put("JIUZHENLY", "1");
@@ -115,7 +113,7 @@ public class ReportApplication {
         invoker_content1.put("CAOZUORQ", KunshanSecondDateUtil.getCurrentDateTime());
         invoker_content1.put("XITONGBS", "APP");
         invoker_content1.put("KAISHIRQ", KunshanSecondDateUtil.getDateByDays2(-Integer.parseInt(dayNum)));
-        logger.info("dayNum:" + KunshanSecondDateUtil.getDateByDays2(-Integer.parseInt(dayNum)));
+
         //结束时间选择当前时间
         invoker_content1.put("JIESHURQ", KunshanSecondDateUtil.getDateByDays2(0));
         invoker_content1.put("JIUZHENLY", "2");
@@ -135,8 +133,7 @@ public class ReportApplication {
         params1.put("coder", "enNseVpXNXNOV1ZXT1doaWJWSjVZakpzYXc9PQ");
         params1.put("api_name", "api.nuts.invoker");
         params1.put("data", data1);
-        logger.info("params:" + params);
-        logger.info("params1:" + params1);
+
         String url = "http://jump.ksey.zwjk.com:8000/api/exec.htm";
         JSONObject res1 = null;
         JSONObject res2 = null;
@@ -144,11 +141,10 @@ public class ReportApplication {
             res1 = RequestHttpPorxy.requestPorxy(params, url);
             res2 = RequestHttpPorxy.requestPorxy(params1, url);
         } catch (Exception e) {
-            logger.error("报告单接口返回异常", e);
+
             map.put("errcode", "1");
         }
-        logger.info("报告单接口返回:" + res1);
-        logger.info("报告单接口返回:" + res2);
+
         JSONArray j1 = analyticalReportList(res1.toString());
         JSONArray j2 = analyticalReportList(res2.toString());
         j1.addAll(j2);

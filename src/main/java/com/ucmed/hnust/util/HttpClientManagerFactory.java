@@ -11,7 +11,6 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.log4j.Logger;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
@@ -22,7 +21,7 @@ import java.util.Properties;
 
 public class HttpClientManagerFactory {
 
-    private static final Logger LOG = Logger.getLogger("HttpClientManagerFactory");
+
     private static PoolingHttpClientConnectionManager cm = null;
 
 
@@ -52,7 +51,6 @@ public class HttpClientManagerFactory {
         try {
             sslsf = new SSLConnectionSocketFactory(SSLContext.getDefault());
         } catch (NoSuchAlgorithmException e) {
-            LOG.info(e);
         }
 
         Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder

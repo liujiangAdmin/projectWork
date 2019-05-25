@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +24,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/two")
 public class TwoLevelVerification {
-    private static final Logger logger = Logger.getLogger(TwoLevelVerification.class);
+
     @Autowired
     private RedisCacheUtil redisCacheUtil;
     @Autowired
@@ -35,7 +34,7 @@ public class TwoLevelVerification {
     public String gettxlToken(HttpServletRequest request, Model model, ModelMap map, HttpServletResponse response)
     {
         String code=request.getParameter("code");
-        logger.info("code:"+code);
+
         redisCacheUtil.setCacheObjectForqywx("code",code);
         return "two";
     }

@@ -1,7 +1,6 @@
 package com.ucmed.hnust.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +22,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping(value = "/demo1")
 public class Demo1Controller {
-    private static final Logger logger = Logger.getLogger(Demo1Controller.class);
+
 
     @RequestMapping(value = "/index1",method = RequestMethod.GET)
     public String index1(HttpServletRequest request, ModelMap map, HttpServletResponse response){

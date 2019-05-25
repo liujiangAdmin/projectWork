@@ -5,7 +5,6 @@ import com.ucmed.hnust.controller.enterpriseWeChat.PublicVariable;
 import com.ucmed.hnust.controller.enterpriseWeChat.TokenUtil;
 import com.ucmed.hnust.util.HttpRequestGet;
 import com.ucmed.hnust.util.weixin.WXBizMsgCrypt;
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -31,7 +30,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/fantong")
 public class FanTongEventServer {
-    Logger logger = Logger.getLogger(AddressListEventServer.class);
+
 
     @Autowired
     private TokenUtil tokenUtil;
@@ -49,7 +48,6 @@ public class FanTongEventServer {
             String echostr = request.getParameter("echostr");
             WXBizMsgCrypt wxBizMsgCrypt = new WXBizMsgCrypt(PublicVariable.fantongstoken, PublicVariable.fantongsencodingaeskey, PublicVariable.corpid);
             res = wxBizMsgCrypt.VerifyURL(msg_signature, timestamp, nonce, echostr);
-            logger.info("res:" + res);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,7 +75,6 @@ public class FanTongEventServer {
             String postData = buffer.toString();
             WXBizMsgCrypt wxBizMsgCrypt = new WXBizMsgCrypt(PublicVariable.fantongstoken, PublicVariable.fantongsencodingaeskey, PublicVariable.corpid);
             String res = wxBizMsgCrypt.DecryptMsg(msgSignature, timestamp, nonce, postData);
-            logger.info("解密后内容:"+res);
             String removeStr3="<![CDATA[";
             String removeStr4="]]>";
             SAXReader saxReader = new SAXReader();
@@ -118,7 +115,6 @@ public class FanTongEventServer {
             String timestamp1=String.valueOf(System.currentTimeMillis()).substring(0,10);
             String nonce1=String.valueOf(System.currentTimeMillis()).substring(0,10);
             encryptres=wxBizMsgCrypt.EncryptMsg(sb.toString(),timestamp1,nonce1);
-            logger.info("加密后内容:"+encryptres);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -6,7 +6,6 @@ package com.ucmed.hnust.controller.enterpriseWeChat.addressBookManagement;
 
 import com.ucmed.hnust.controller.enterpriseWeChat.PublicVariable;
 import com.ucmed.hnust.util.weixin.WXBizMsgCrypt;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +23,6 @@ import java.io.InputStreamReader;
 @Controller
 @RequestMapping(value = "/jssjfwq")
 public class AddressListEventServer {
-    Logger logger = Logger.getLogger(AddressListEventServer.class);
 
     /**
      * 设置接收事件服务器
@@ -40,7 +38,7 @@ public class AddressListEventServer {
             String echostr = request.getParameter("echostr");
             WXBizMsgCrypt wxBizMsgCrypt = new WXBizMsgCrypt(PublicVariable.stoken, PublicVariable.sencodingaeskey, PublicVariable.corpid);
             res = wxBizMsgCrypt.VerifyURL(msg_signature, timestamp, nonce, echostr);
-            logger.info("res:" + res);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,12 +66,10 @@ public class AddressListEventServer {
             String postData = buffer.toString();
             WXBizMsgCrypt wxBizMsgCrypt = new WXBizMsgCrypt(PublicVariable.stoken, PublicVariable.sencodingaeskey, PublicVariable.corpid);
             String res = wxBizMsgCrypt.DecryptMsg(msgSignature, timestamp, nonce, postData);
-            logger.info("解密后内容:"+res);
             String replyMsg="0";
             String timestamp1=String.valueOf(System.currentTimeMillis()).substring(0,10);
             String nonce1=String.valueOf(System.currentTimeMillis()).substring(0,10);
             encryptres=wxBizMsgCrypt.EncryptMsg(replyMsg,timestamp1,nonce1);
-            logger.info("加密后内容:"+encryptres);
         } catch (Exception e) {
             e.printStackTrace();
         }

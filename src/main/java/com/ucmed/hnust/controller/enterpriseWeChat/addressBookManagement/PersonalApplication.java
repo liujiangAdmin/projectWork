@@ -5,7 +5,6 @@ import com.ucmed.hnust.controller.enterpriseWeChat.PublicVariable;
 import com.ucmed.hnust.controller.enterpriseWeChat.TokenUtil;
 import com.ucmed.hnust.util.HttpRequestGet;
 import com.ucmed.hnust.util.HttpRequestPost;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,6 @@ import java.util.Random;
 @Controller
 @RequestMapping(value = "/personalApplication")
 public class PersonalApplication {
-    private static final Logger logger = Logger.getLogger(PersonalApplication.class);
 
     @Value("${mymy.list}")
     private String mrmyList;
@@ -51,7 +49,6 @@ public class PersonalApplication {
         map1.put("access_token",tokenUtil.getzjyyTokenImpl(PublicVariable.gryysecret));
         map1.put("code",code);
         JSONObject jsonObject= HttpRequestGet.sendGet(PublicVariable.hqcyxxbycode,map1,"utf-8");
-        logger.info("根据code获取成员信息："+jsonObject);
         if(!jsonObject.getString("errcode").equals("0"))
         {
             map.put("errcode","1");
@@ -62,7 +59,6 @@ public class PersonalApplication {
         jsonObject1.put("user_ticket",jsonObject.getString("user_ticket"));
         String res=HttpRequestPost.HttpRequest(PublicVariable.hqcyxqbyticket+tokenUtil.getzjyyTokenImpl(PublicVariable.gryysecret)
         ,"POST",jsonObject1.toString());
-        logger.info("根据user_ticket获取成员详细信息:"+jsonObject);
         JSONObject jsonObject2=JSONObject.parseObject(res);
         map.put("userid",jsonObject2.getString("userid"));
         map.put("name",jsonObject2.getString("name"));
@@ -77,7 +73,6 @@ public class PersonalApplication {
     @RequestMapping(value = "/index2",method= RequestMethod.GET)
     public String index2(HttpServletRequest request, Model model, ModelMap map, HttpServletResponse response)
     {
-        logger.info(mrmyList);
         String [] mrmyArray =  mrmyList.split("。");
         Random r = new Random();
         int randomNumber = r.nextInt(mrmyArray.length);

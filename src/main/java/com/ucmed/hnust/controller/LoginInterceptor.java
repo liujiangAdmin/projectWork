@@ -1,6 +1,7 @@
 package com.ucmed.hnust.controller;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -12,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-    private static final Logger logger = Logger.getLogger(LoginInterceptor.class);
+    private static final Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
-        logger.info("preHandle");
+        log.info("preHandle......");
         String uid = (String) request.getSession().getAttribute("userId");
         if(null!=uid && !"".equals(uid)) {
             return true;

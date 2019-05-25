@@ -1,6 +1,6 @@
 package com.ucmed.hnust.controller;
 
-import org.apache.log4j.Logger;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping(value = "/demo2")
 public class Demo2Controller {
-    private static final Logger logger = Logger.getLogger(Demo2Controller.class);
+
 
 
     @RequestMapping(value = "/index1",method = RequestMethod.GET)

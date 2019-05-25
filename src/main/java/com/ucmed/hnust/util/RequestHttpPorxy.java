@@ -8,7 +8,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.Logger;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class RequestHttpPorxy {
-    private static final Logger LOG = Logger.getLogger(RequestHttpPorxy.class);
+
 
     private RequestHttpPorxy(){}
 
@@ -52,7 +52,7 @@ public class RequestHttpPorxy {
             }
             res = JSONObject.parseObject(resStr);
         } catch(Exception e) {
-            LOG.info(e);
+
         } finally {
             if(resp!=null) {
                 resp.close();// 关闭连接

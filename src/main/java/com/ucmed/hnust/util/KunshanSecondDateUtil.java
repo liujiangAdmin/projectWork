@@ -1,6 +1,5 @@
 package com.ucmed.hnust.util;
 
-import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +9,6 @@ import java.util.GregorianCalendar;
 
 public class KunshanSecondDateUtil {
 
-    private static final Logger LOGGER = Logger.getLogger(KunshanSecondDateUtil.class);
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat(
             "yyyy/MM/dd");
@@ -62,7 +60,6 @@ public class KunshanSecondDateUtil {
         try {
             return sdf4.parse(date);
         } catch (ParseException e) {
-            LOGGER.info(e);
         }
         return new Date();
     }
@@ -205,7 +202,7 @@ public class KunshanSecondDateUtil {
         try {
             return sdf1.format(date);
         } catch (Exception e) {
-            LOGGER.info(e);
+
         }
         return null;
     }
@@ -220,7 +217,7 @@ public class KunshanSecondDateUtil {
         try {
             return sdf1.parse(date);
         } catch (ParseException e) {
-            LOGGER.info(e);
+
         }
         return new Date();
     }
@@ -235,7 +232,7 @@ public class KunshanSecondDateUtil {
         try {
             return sdf.parse(date);
         } catch (ParseException e) {
-            LOGGER.info(e);
+
         }
         return new Date();
     }
@@ -251,7 +248,7 @@ public class KunshanSecondDateUtil {
         try {
             return yyyyMMddHHmm.parse(date);
         } catch (ParseException e) {
-            LOGGER.info(e);
+
 
         }
         return new Date();
@@ -268,7 +265,7 @@ public class KunshanSecondDateUtil {
         try {
             return yyyyMMdd.parse(date);
         } catch (ParseException e) {
-            LOGGER.info(e);
+
         }
         return new Date();
     }
@@ -277,7 +274,7 @@ public class KunshanSecondDateUtil {
         try {
             return sdf2.parse(date);
         } catch (ParseException e) {
-            LOGGER.info(e);
+
         }
         return new Date();
     }
@@ -286,7 +283,7 @@ public class KunshanSecondDateUtil {
         try {
             return sdf2.format(date);
         } catch (Exception e) {
-            LOGGER.info(e);
+
         }
         return null;
     }
@@ -295,7 +292,7 @@ public class KunshanSecondDateUtil {
         try {
             return sdf3.format(date);
         } catch (Exception e) {
-            LOGGER.info(e);
+
         }
         return null;
     }
@@ -305,7 +302,7 @@ public class KunshanSecondDateUtil {
         try {
             d = yyyyMMdd.parse(date);
         } catch (ParseException e) {
-            LOGGER.info(e);
+
 
         }
         Calendar calendar = Calendar.getInstance();

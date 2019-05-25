@@ -2,7 +2,7 @@ import com.alibaba.fastjson.JSON;
 import com.ucmed.hnust.pojo.RedisTest;
 import com.ucmed.hnust.service.RedisTestService;
 import com.ucmed.hnust.util.RedisCacheUtil;
-import org.apache.log4j.Logger;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RedisTestTest {
-    private Logger logger = Logger.getLogger(this.getClass());
+
     @Autowired
     private RedisTestService redisTestService;
 
@@ -29,9 +29,9 @@ public class RedisTestTest {
     public void selectAllUser()
     {
         List<RedisTest> list = redisTestService.selectAllUser();
-        logger.info("selectAllUserAAA"+JSON.toJSONString(list));
+
         List<RedisTest> list1 = redisTestService.selectAllUser1();
-        logger.info("selectAllUserAAA1"+JSON.toJSONString(list1));
+
     }
     @Test
     public void insertUser()
@@ -49,7 +49,7 @@ public class RedisTestTest {
         String key="name";
         redisCacheUtil.setCacheObject(key,"chenhong");
         String result= (String) redisCacheUtil.getCacheObject(key);
-        logger.info("result:"+result);
+
     }
     @Test
     public void test1()
@@ -60,6 +60,6 @@ public class RedisTestTest {
         String key="name";
         redisCacheUtil.setCacheList(key,list);
         List<String>list1= (List<String>) redisCacheUtil.getCacheList(key);
-        logger.info("result:"+ JSON.toJSONString(list1));
+
     }
 }

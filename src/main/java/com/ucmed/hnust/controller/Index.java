@@ -1,7 +1,6 @@
 package com.ucmed.hnust.controller;
 
 import com.ucmed.hnust.controller.enterpriseWeChat.PublicVariable;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +23,7 @@ import java.util.Random;
 @RequestMapping(value = "/")
 public class Index {
 
-    Logger logger = Logger.getLogger(Index.class);
+
 
     @Value("${mymy.list}")
     private String mrmyList;
@@ -43,7 +42,7 @@ public class Index {
     @RequestMapping(value = "/fileUpload",method= RequestMethod.GET)
     public String fileUpload(HttpServletRequest request, Model model, ModelMap map, HttpServletResponse response)
     {
-        logger.info(mrmyList);
+
         String [] mrmyArray =  mrmyList.split("。");
         Random r = new Random();
         int randomNumber = r.nextInt(mrmyArray.length);
