@@ -28,10 +28,10 @@ public class RedisCacheUtil<T> {
      */
     public <T> ValueOperations<String, T> setCacheObject(String key, T value) {
         ValueOperations<String, T> operation = redisTemplate.opsForValue();
-        operation.set(key,value);
         //方式一
         //operation.set(key, value,30, TimeUnit.SECONDS);
         //方式二
+        operation.set(key,value);
         redisTemplate.expire(key,60,TimeUnit.SECONDS);
         return operation;
     }
